@@ -47,7 +47,6 @@ public class Main {
                 case 1:
                     System.out.println("Add new Contacts");
                     ctlist.inputlist();
-                    System.out.println("Input Completed");
                     break;
                 case 2:
                     ctlist.findContact();

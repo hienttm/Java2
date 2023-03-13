@@ -39,10 +39,16 @@ public class Contact {
     }
     public void input(){
         Scanner sc=new Scanner(System.in);
-        System.out.println("Input Contact Name:");
-        ContactName=sc.nextLine();
-        System.out.println("Input Phone number:");
-        Phone=sc.nextLine();
+        do{
+            System.out.println("Input Contact Name:");
+            ContactName=sc.nextLine(); 
+        }while (ContactName.equalsIgnoreCase("")==true);
+        
+        do{
+            System.out.println("Input Phone number:");
+            Phone=sc.nextLine();
+        }while(Phone.equalsIgnoreCase("")==true);
+        
         
     }
     public void display(){

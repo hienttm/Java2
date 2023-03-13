@@ -22,9 +22,17 @@ public class ContactList {
         Scanner sc=new Scanner(System.in);
         String res;
         while(true){
-            Contact newscontact=new Contact();
-            newscontact.input();
-            list.put(newscontact.ContactName,newscontact.Phone);
+            Contact newcontact=new Contact();
+            newcontact.input();
+            for(String ct:list.keySet()){
+                String oldphone=list.get(ct);
+                if(newcontact.Phone.equalsIgnoreCase(oldphone)==true){
+                    System.out.println("Số điện thoại đã tồn tại, vui lòng nhập lại");
+                    return;
+                }
+            }
+            list.put(newcontact.ContactName,newcontact.Phone);
+            System.out.println("Input Completed");
             System.out.println("Tiếp tục? (c/k)");
             res=sc.nextLine();
             if(res.equalsIgnoreCase("k"))
