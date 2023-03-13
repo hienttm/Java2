@@ -66,8 +66,8 @@ public class StudentList {
             {
                 oos.writeObject(list.get(i));
             }
+            return true;
             
-            System.out.println("Ghi tệp thành công");
         } catch (FileNotFoundException ex) {
             System.out.println("Có lỗi mở tệp để ghi!");
             //Logger.getLogger(StudentList.class.getName()).log(Level.SEVERE, null, ex);
@@ -79,13 +79,15 @@ public class StudentList {
         }
         finally{
             try{
-                fos.close();
-                oos.close();
+                if(oos!=null)
+                    oos.close();
+                if(fos!=null)
+                    fos.close();
             }catch(Exception e){
                 e.printStackTrace();
             }
         }
-        return true;
+        
     }
     public boolean getDataFromFile(){
         ObjectInputStream ois = null;
@@ -100,10 +102,16 @@ public class StudentList {
                 Student sv = (Student)ois.readObject();//Phải ép kiểu object về kiểu object khi write
                 list.add(sv);
             }
+            return true;
             
         } catch (FileNotFoundException ex) {
             System.out.println("Có lỗi mở tệp để đọc!");
             //Logger.getLogger(StudentList.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        catch (IOException ex) {
+            System.out.println("Lỗi đọc tệp");
+            //Logger.getLogger(StudentManager.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
         catch(Exception e){
@@ -113,12 +121,14 @@ public class StudentList {
         }
         finally{
             try{
-                fis.close();
-                ois.close();
+                if(ois!=null)
+                    ois.close();
+                if(fis!=null)
+                    fis.close();
             }catch(Exception e){
                 e.printStackTrace();
             }
         }
-        return true;
+        
     }
 }
